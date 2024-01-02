@@ -1,8 +1,7 @@
 import { CardDetails } from "@/pages/CardDetails";
 import { Home } from "@/pages/Home";
-import { createBrowserRouter } from "react-router-dom";
 
-export const Navigator = createBrowserRouter([
+export const Navigator = [
   {
     path: "/",
     element: <Home />,
@@ -11,4 +10,4 @@ export const Navigator = createBrowserRouter([
     path: "/card",
     element: <CardDetails />,
   },
-]);
+];
