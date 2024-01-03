@@ -8,15 +8,13 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const cards: ICreditCard[] = [
   {
-    id: "union-bank",
     variant: "primary",
     number: "4642 3489 9867 7632",
     bank: "Universal Bank",
   },
   {
-    id: "universal-bank",
     variant: "secondary",
-    number: "4642 3489 9867 7632",
+    number: "5489 7452 5726 9827",
     bank: "Universal Bank",
   },
 ];

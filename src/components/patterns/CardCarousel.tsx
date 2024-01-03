@@ -28,7 +28,7 @@ export function CardCarousel({ onCardClick, cards }: CardCarouselProps) {
           {cards.length > 0
             ? cards.map((card) => (
                 <CarouselItem
-                  key={card.id}
+                  key={card.number.replace(" ", "-")}
                   style={{
                     width: height + 20,
                     height: width + 20,
@@ -37,10 +37,10 @@ export function CardCarousel({ onCardClick, cards }: CardCarouselProps) {
                   className="pl-5"
                 >
                   <motion.div
-                    id={card.id}
+                    id={card.number.replace(" ", "-")}
                     layout
-                    key={card.id}
-                    layoutId={"card" + card.id}
+                    key={card.number.replace(" ", "-")}
+                    layoutId={"card" + card.number.replace(" ", "-")}
                     animate={{
                       rotate: -90,
                       y: height / 3,

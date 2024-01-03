@@ -39,7 +39,7 @@ export function CardDetails(props: CardDetailsProps) {
           <div className="self-middle">
             <motion.div
               layout
-              layoutId={"card" + props.card.id}
+              layoutId={"card" + props.card.number.replace(" ", "-")}
               animate={{ rotate: 0, ...cardDimensions }}
             >
               <CreditCard {...props.card} />
