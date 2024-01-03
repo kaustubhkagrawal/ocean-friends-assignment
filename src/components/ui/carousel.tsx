@@ -273,7 +273,7 @@ CarouselNext.displayName = "CarouselNext";
 const CarouselDotNavigation = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<typeof Button>
->((props, ref) => {
+>((_, ref) => {
   const { scrollTo, scrollSnaps, selectedIndex } = useCarousel();
 
   return (
