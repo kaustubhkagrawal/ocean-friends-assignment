@@ -1,4 +1,5 @@
 import { Balance } from "@/components/patterns/Balance";
+import { Statement } from "@/components/patterns/Statement";
 import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
 import { Button } from "@/components/ui/button";
 import { ICreditCard } from "@/types";
@@ -33,7 +34,7 @@ export function CardDetails(props: CardDetailsProps) {
       </div>
       <div className="layout-container">
         <div className="vstack align-around gap-5 h-full">
-          <h1 className="text-[32px] self-start font-bold  leading-[41px] tracking-tight pt-8">
+          <h1 className="text-[32px] self-start font-bold  leading-[41px] tracking-tight">
             Salary <br /> Card
           </h1>
           <div className="self-middle">
@@ -46,6 +47,7 @@ export function CardDetails(props: CardDetailsProps) {
             </motion.div>
           </div>
           <Balance amount={"2,748.00"} />
+          <Statement />
         </div>
       </div>
     </motion.div>
