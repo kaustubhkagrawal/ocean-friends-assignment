@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import MasterCardLogo from "@/assets/images/master_card_logo.png";
+import { cva } from "class-variance-authority";
+import { cn } from "@/lib/utils";
 
 export function getCardDimension() {
   const windowWidth = window.innerWidth;
@@ -13,20 +15,32 @@ export function getCardDimension() {
 }
 
 interface CardProps {
-  bgGradient?: string[];
+  variant?: "primary" | "secondary";
   number: string;
   bank: string;
 }
 
-export function CreditCard({ bgGradient, ...props }: CardProps) {
+const cardVariants = cva(
+  " container m-auto rounded-xl relative text-white shadow-2xl",
+  {
+    variants: {
+      variant: {
+        primary: "bg-gradient-to-bl from-[#1b5cf6] via-[#429eff] to-[#cb5baa]",
+        secondary:
+          "bg-gradient-to-bl from-[#F6BF76] via-[#FF5F00] to-[#ee784a]",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+    },
+  }
+);
+
+export function CreditCard({ variant, ...props }: CardProps) {
   const cardDimensions = getCardDimension();
   return (
     <motion.div
-      className={` container m-auto ${
-        bgGradient
-          ? `bg-gradient-to-bl from-[#1b5cf6] via-[#429eff] to-[#cb5baa]`
-          : "bg-red-100"
-      } rounded-xl relative text-white shadow-2xl`}
+      className={cn(cardVariants({ variant }))}
       animate={cardDimensions}
     >
       <div className="w-full vstack py-4 justify-between h-full gap-2">
@@ -64,7 +78,7 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
 }
 
 CreditCard.defaultProps = {
-  bgGradient: ["#1b5cf6", "#429eff", "#cb5baa"],
+  variant: "primary",
   number: "4642 3489 9867 7632",
   bank: "Universal Bank",
 };

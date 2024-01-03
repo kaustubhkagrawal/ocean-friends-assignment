@@ -1,6 +1,6 @@
 export interface ICreditCard {
   id?: string;
-  bgGradient: string[];
+  variant: "primary" | "secondary";
   number: string;
   bank: string;
 }

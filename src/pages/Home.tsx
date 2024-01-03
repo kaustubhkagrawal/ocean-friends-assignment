@@ -9,15 +9,15 @@ import { AnimatePresence, motion } from "framer-motion";
 const cards: ICreditCard[] = [
   {
     id: "union-bank",
-    bgGradient: ["#1b5cf6", "#429eff", "#cb5baa"],
+    variant: "primary",
     number: "4642 3489 9867 7632",
     bank: "Universal Bank",
   },
   {
-    id: "central-bank",
-    bgGradient: ["#1b5cf6", "#429eff", "#cb5baa"],
+    id: "universal-bank",
+    variant: "secondary",
     number: "4642 3489 9867 7632",
-    bank: "Central Bank",
+    bank: "Universal Bank",
   },
 ];
 
