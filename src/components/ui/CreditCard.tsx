@@ -1,5 +1,16 @@
 import { motion } from "framer-motion";
 
+export function getCardDimension() {
+  const windowWidth = window.innerWidth;
+
+  const width = Math.min(windowWidth - 20, 320);
+
+  return {
+    width,
+    height: width / 1.58,
+  };
+}
+
 interface CardProps {
   bgGradient?: string[];
   number: string;
@@ -7,9 +18,10 @@ interface CardProps {
 }
 
 export function CreditCard({ bgGradient, ...props }: CardProps) {
+  const { width, height } = getCardDimension();
   return (
     <motion.div
-      className={`w-80 h-56 container m-auto ${
+      className={`w-[${width}px] h-[${height}px] container m-auto ${
         bgGradient
           ? `bg-gradient-to-bl from-[#1b5cf6] via-[#429eff] to-[#cb5baa]`
           : "bg-red-100"

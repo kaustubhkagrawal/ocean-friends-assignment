@@ -1,15 +1,43 @@
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ComponentProps, useState } from "react";
 import { CardDetails } from "./CardDetails";
-import { CreditCard } from "@/components/ui/CreditCard";
+import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
+
+import Slider from "react-slick";
+
+const cards = [
+  {
+    id: "union-bank",
+    bgGradient: ["#1b5cf6", "#429eff", "#cb5baa"],
+    number: "4642 3489 9867 7632",
+    bank: "Universal Bank",
+  },
+  {
+    id: "central-bank",
+    bgGradient: ["#1b5cf6", "#429eff", "#cb5baa"],
+    number: "4642 3489 9867 7632",
+    bank: "Central Bank",
+  },
+];
+
+const sliderSettings: ComponentProps<typeof Slider> = {
+  dots: false,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  infinite: false,
+  initialSlide: 0,
+};
 
 export function Home() {
   const [showCard, setShowCard] = useState(false);
+
+  const { width, height } = getCardDimension();
   return (
     <DefaultLayout>
-      <div className="vstack gap-5 px-5 h-full">
+      <div className="vstack px-5 h-full">
         <div className="hstack gap-4">
           <button
             onClick={() => {
@@ -41,16 +69,32 @@ export function Home() {
                 $2,748.00
               </p>
             </header>
-            <div className="hstack gap-4 flex-wrap max-w-full min-h-96 aspect-square overflow-x-hidden">
-              <motion.div
-                id="card-xyz"
-                layout
-                layoutId="card"
-                animate={{ rotate: -90, x: 30 }}
-                className="relative h-96"
-              >
-                <CreditCard />
-              </motion.div>
+            <div
+              className={`relative max-w-full overflow-x-hidden min-h-80`}
+              style={{ height: "300px" }}
+            >
+              <AnimatePresence mode="sync">
+                {cards.length > 0
+                  ? cards.map((card, index) => (
+                      <motion.div
+                        id={card.id}
+                        layout
+                        key={card.id}
+                        layoutId={"card" + card.id}
+                        animate={{
+                          rotate: -90,
+                          y: height / 3,
+                          x: (height - width) / 2 + height * index + 20 * index,
+                          width: width,
+                          height: height,
+                        }}
+                        className={`absolute top-0`}
+                      >
+                        <CreditCard {...card} />
+                      </motion.div>
+                    ))
+                  : null}
+              </AnimatePresence>
             </div>
           </>
         ) : (

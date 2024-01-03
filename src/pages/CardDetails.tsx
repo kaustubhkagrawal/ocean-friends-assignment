@@ -6,7 +6,11 @@ export function CardDetails() {
   return (
     <DefaultLayout>
       <div className="vstack items-center align-middle h-full">
-        <motion.div layout layoutId="card" animate={{ rotate: 0, x: 0 }}>
+        <motion.div
+          layout
+          layoutId={"card" + "union-bank"}
+          animate={{ rotate: 0, x: 0 }}
+        >
           <CreditCard />
         </motion.div>
       </div>
