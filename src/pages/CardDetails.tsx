@@ -1,14 +1,10 @@
 import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
+import { ICreditCard } from "@/types";
 import { motion } from "framer-motion";
 
 interface CardDetailsProps {
   goBack: () => void;
-  card: {
-    id: string;
-    bgGradient?: string[];
-    number: string;
-    bank: string;
-  };
+  card: ICreditCard;
 }
 
 export function CardDetails(props: CardDetailsProps) {
