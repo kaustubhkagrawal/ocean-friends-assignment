@@ -19,5 +19,9 @@ body {
 }
 
 body {
-  position: relative;
+  @apply relative text-white;
+}
+
+.layout-container {
+  @apply max-w-96 mx-auto;
 }

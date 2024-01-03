@@ -277,18 +277,17 @@ const CarouselDotNavigation = React.forwardRef<
   const { scrollTo, scrollSnaps, selectedIndex } = useCarousel();
 
   return (
-    <div ref={ref} className="hstack justify-center gap-2">
+    <div ref={ref} className="hstack justify-center gap-1">
       {scrollSnaps.map((_, index) => (
         <AnimatedButton
           key={index}
           layout
-          layoutId={"nav" + index}
+          layoutId={index === selectedIndex ? "nav-dot-active" : "nav-dot"}
           onClick={() => scrollTo(index)}
           animate={{
-            width: index === selectedIndex ? 30 : 20,
             background: index === selectedIndex ? "white" : "black",
           }}
-          className={`w-5 h-1 py-1 rounded-[9px] `}
+          className={`h-1 py-0.5 rounded-[9px] `}
         />
       ))}
     </div>

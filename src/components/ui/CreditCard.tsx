@@ -28,12 +28,10 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
       } rounded-xl relative text-white shadow-2xl`}
       animate={cardDimensions}
     >
-      <div className="w-full vstack justify-around">
+      <div className="w-full vstack py-4 justify-between h-full gap-2">
         <div className="flex justify-between">
           <div className="hstack">
-            <p className="text-3xl font-black leading-loose tracking-widest ">
-              CB
-            </p>
+            <p className="text-3xl font-black tracking-widest ">CB</p>
             <div className="flex items-center px-2">
               <p className="font-medium tracking-widest border-l border-white px-2 text-sm font-medium text-white text-opacity-60 ">
                 {props.bank}
@@ -41,16 +39,15 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
             </div>
           </div>
         </div>
-        <div className="hstack justify-between py-2">
+        <div className="hstack justify-between">
           <div className="w-16 h-12 bg-white bg-opacity-30 rounded-[10px]" />
           {/* <img src="" alt="" /> */}
         </div>
-        <div className="mt-5">
+        <div className=""></div>
+        <div className="pr-6">
           <p className="text-white text-md sm:text-[22px] font-bold tracking-tight">
             {props.number}
           </p>
-        </div>
-        <div className="pt-2 pr-6">
           <div className="flex justify-between">
             <div className="">
               <div className="text-white text-opacity-60 text-sm font-normal tracking-tight">

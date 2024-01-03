@@ -1,18 +1,10 @@
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
-import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { CardDetails } from "./CardDetails";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Balance } from "@/components/patterns/Balance";
 import { CardCarousel } from "@/components/patterns/CardCarousel";
 import { ICreditCard } from "@/types";
+import { useState } from "react";
+import { CardDetails } from "./CardDetails";
+import { AnimatePresence, motion } from "framer-motion";
 
 const cards: ICreditCard[] = [
   {
@@ -44,25 +36,32 @@ export function Home() {
 
   return (
     <DefaultLayout>
-      <div className="vstack px-5 h-full">
-        {selectedCard === null ? (
-          <>
-            <header>
-              <h1 className="text-white text-[32px] font-bold  leading-[41px] tracking-tight pt-8">
-                Bank <br /> Cards
-              </h1>
-              <h2 className="text-slate-400 text-base font-bold font-['Poppins'] leading-relaxed tracking-tight">
-                Balance
-              </h2>
-              <p className="text-white text-[26px] font-bold leading-relaxed tracking-tight">
-                $2,748.00
-              </p>
-            </header>
-            <CardCarousel cards={cards} onCardClick={onCardClick} />
-          </>
-        ) : (
-          <CardDetails goBack={goBack} card={selectedCard} />
-        )}
+      <div className="layout-container px-5 h-full">
+        <AnimatePresence>
+          {selectedCard === null ? (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="vstack h-full justify-around pb-20"
+            >
+              <header>
+                <h1 className="text-white text-[32px] font-bold  leading-[41px] tracking-tight pt-8">
+                  Bank <br /> Cards
+                </h1>
+              </header>
+              <Balance amount={"2,748.00"} />
+              <CardCarousel cards={cards} onCardClick={onCardClick} />
+            </motion.div>
+          ) : (
+            <CardDetails goBack={goBack} card={selectedCard} />
+          )}
+        </AnimatePresence>
+        {/* <AnimatePresence>
+          {selectedCard !== null ? (
+            
+          ) : null}
+        </AnimatePresence> */}
       </div>
     </DefaultLayout>
   );

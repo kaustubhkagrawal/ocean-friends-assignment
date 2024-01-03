@@ -15,11 +15,7 @@ interface CardCarouselProps {
   onCardClick: (card: ICreditCard) => void;
 }
 
-export function CardCarousel({
-  onCardClick,
-  cards,
-  ...props
-}: CardCarouselProps) {
+export function CardCarousel({ onCardClick, cards }: CardCarouselProps) {
   const { width, height } = getCardDimension();
 
   return (
