@@ -43,14 +43,14 @@ export function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="vstack h-full justify-around pb-20"
+              className="vstack h-full justify-around pb-24"
             >
               <header>
                 <h1 className="text-white text-[32px] font-bold  leading-[41px] tracking-tight pt-8">
                   Bank <br /> Cards
                 </h1>
+                <Balance amount={"2,748.00"} />
               </header>
-              <Balance amount={"2,748.00"} />
               <CardCarousel cards={cards} onCardClick={onCardClick} />
             </motion.div>
           ) : (
