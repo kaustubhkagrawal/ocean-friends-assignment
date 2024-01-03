@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ComponentProps, ReactNode } from "react";
+import { Footer } from "../patterns/Footer";
 
 const animations = {
   initial: { opacity: 0 },
@@ -19,9 +20,10 @@ export function DefaultLayout({ children, ...props }: DefaultLayoutProps) {
       animate={"animate"}
       exit={"exit"}
       {...props}
-      className={`h-screen ${props?.className}`}
+      className={`h-screen w-full bg-gradient-to-t from-slate-800 to-slate-700 ${props?.className}`}
     >
       {children}
+      <Footer />
     </motion.div>
   );
 }

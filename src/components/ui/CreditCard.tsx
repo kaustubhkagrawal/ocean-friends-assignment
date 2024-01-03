@@ -9,13 +9,13 @@ interface CardProps {
 export function CreditCard({ bgGradient, ...props }: CardProps) {
   return (
     <motion.div
-      className={`w-96 h-56 m-auto ${
+      className={`w-80 h-56 container m-auto ${
         bgGradient
           ? `bg-gradient-to-bl from-[#1b5cf6] via-[#429eff] to-[#cb5baa]`
           : "bg-red-100"
       } rounded-xl relative text-white shadow-2xl`}
     >
-      <div className="w-full px-8 absolute">
+      <div className="w-full">
         <div className="flex justify-between">
           <div className="hstack">
             <p className="text-3xl font-black leading-loose tracking-widest ">
@@ -33,7 +33,9 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
           {/* <img src="" alt="" /> */}
         </div>
         <div className="mt-5">
-          <p className="font-medium tracking-more-wider">{props.number}</p>
+          <p className="text-white text-md sm:text-[22px] font-bold tracking-tight">
+            {props.number}
+          </p>
         </div>
         <div className="pt-2 pr-6">
           <div className="flex justify-between">
