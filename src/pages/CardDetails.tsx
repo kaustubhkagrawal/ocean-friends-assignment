@@ -19,7 +19,7 @@ export function CardDetails(props: CardDetailsProps) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed top-0 right-0 bottom-0 left-0 overflow-y-auto z-50 bg-slate-700 px-5"
+      className="fixed top-0 right-0 bottom-0 left-0 overflow-y-auto z-50 bg-gradient-to-t from-slate-800 to-slate-700 px-5"
     >
       <div className="header py-4 px-2">
         <div className="layout-container">
