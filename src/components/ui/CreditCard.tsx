@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import MasterCardLogo from "@/assets/images/master_card_logo.png";
 
 export function getCardDimension() {
   const windowWidth = window.innerWidth;
@@ -44,7 +45,7 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
           {/* <img src="" alt="" /> */}
         </div>
         <div className=""></div>
-        <div className="pr-6">
+        <div className="">
           <p className="text-white text-md sm:text-[22px] font-bold tracking-tight">
             {props.number}
           </p>
@@ -54,7 +55,7 @@ export function CreditCard({ bgGradient, ...props }: CardProps) {
                 04/24
               </div>
             </div>
-            {/* <img src="" alt="" /> */}
+            <img src={MasterCardLogo} className="w-10" alt="master_card_logo" />
           </div>
         </div>
       </div>
