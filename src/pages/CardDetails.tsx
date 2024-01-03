@@ -1,7 +1,9 @@
 import { Balance } from "@/components/patterns/Balance";
 import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
+import { Button } from "@/components/ui/button";
 import { ICreditCard } from "@/types";
 import { motion } from "framer-motion";
+import { ArrowLeft } from "lucide-react";
 
 interface CardDetailsProps {
   goBack: () => void;
@@ -19,8 +21,15 @@ export function CardDetails(props: CardDetailsProps) {
       exit={{ opacity: 0 }}
       className="fixed top-0 right-0 bottom-0 left-0 overflow-y-auto z-50 bg-slate-700 px-5"
     >
-      <div className="header py-4 px-2" onClick={() => props.goBack?.()}>
-        <div className="layout-container">cross</div>
+      <div className="header py-4 px-2">
+        <div className="layout-container">
+          <Button
+            className="bg-transparent px-0 -ml-2"
+            onClick={() => props.goBack?.()}
+          >
+            <ArrowLeft />
+          </Button>
+        </div>
       </div>
       <div className="layout-container">
         <div className="vstack align-around gap-5 h-full">
