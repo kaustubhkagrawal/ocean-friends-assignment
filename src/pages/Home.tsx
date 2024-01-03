@@ -1,11 +1,9 @@
 import { DefaultLayout } from "@/components/layouts/DefaultLayout";
-import { Link } from "react-router-dom";
-import { AnimatePresence, motion } from "framer-motion";
-import { ComponentProps, useState } from "react";
-import { CardDetails } from "./CardDetails";
 import { CreditCard, getCardDimension } from "@/components/ui/CreditCard";
-
-import Slider from "react-slick";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { CardDetails } from "./CardDetails";
 
 const cards = [
   {
@@ -22,41 +20,25 @@ const cards = [
   },
 ];
 
-const sliderSettings: ComponentProps<typeof Slider> = {
-  dots: false,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  infinite: false,
-  initialSlide: 0,
-};
-
 export function Home() {
-  const [showCard, setShowCard] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<
+    (typeof cards)[number] | null
+  >(null);
 
   const { width, height } = getCardDimension();
+
+  const onCardClick = (card: (typeof cards)[number]) => {
+    setSelectedCard(card);
+  };
+
+  const goBack = () => {
+    setSelectedCard(null);
+  };
+
   return (
     <DefaultLayout>
       <div className="vstack px-5 h-full">
-        <div className="hstack gap-4">
-          <button
-            onClick={() => {
-              setShowCard(false);
-            }}
-          >
-            Home
-          </button>
-          <Link to={"/card"}>Card</Link>
-          <button
-            onClick={() => {
-              setShowCard(true);
-            }}
-          >
-            card
-          </button>
-        </div>
-
-        {!showCard ? (
+        {selectedCard === null ? (
           <>
             <header>
               <h1 className="text-white text-[32px] font-bold  leading-[41px] tracking-tight pt-8">
@@ -70,35 +52,43 @@ export function Home() {
               </p>
             </header>
             <div
-              className={`relative max-w-full overflow-x-hidden min-h-80`}
-              style={{ height: "300px" }}
+              className={`relative max-w-full`}
+              style={{ height: width + 40 }}
             >
-              <AnimatePresence mode="sync">
-                {cards.length > 0
-                  ? cards.map((card, index) => (
-                      <motion.div
-                        id={card.id}
-                        layout
-                        key={card.id}
-                        layoutId={"card" + card.id}
-                        animate={{
-                          rotate: -90,
-                          y: height / 3,
-                          x: (height - width) / 2 + height * index + 20 * index,
-                          width: width,
-                          height: height,
-                        }}
-                        className={`absolute top-0`}
-                      >
-                        <CreditCard {...card} />
-                      </motion.div>
-                    ))
-                  : null}
-              </AnimatePresence>
+              {cards.length > 0
+                ? cards.map((card, index) => (
+                    <motion.div
+                      id={card.id}
+                      layout
+                      key={card.id}
+                      layoutId={"card" + card.id}
+                      initial={{
+                        rotate: -90,
+                        y: height / 3,
+                        x: (height - width) / 2 + height * index + 20 * index,
+                        width: width,
+                        opacity: 0,
+                        height: height,
+                      }}
+                      animate={{
+                        rotate: -90,
+                        y: height / 3,
+                        x: (height - width) / 2 + height * index + 20 * index,
+                        width: width,
+                        height: height,
+                        opacity: 1,
+                      }}
+                      className={`absolute top-0`}
+                      onClick={() => onCardClick(card)}
+                    >
+                      <CreditCard {...card} />
+                    </motion.div>
+                  ))
+                : null}
             </div>
           </>
         ) : (
-          <CardDetails />
+          <CardDetails goBack={goBack} card={selectedCard} />
         )}
       </div>
     </DefaultLayout>

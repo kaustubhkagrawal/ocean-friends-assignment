@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 export function getCardDimension() {
   const windowWidth = window.innerWidth;
 
-  const width = Math.min(windowWidth - 20, 320);
+  const width = Math.min(windowWidth - 40, 340);
 
   return {
     width,
@@ -18,16 +18,17 @@ interface CardProps {
 }
 
 export function CreditCard({ bgGradient, ...props }: CardProps) {
-  const { width, height } = getCardDimension();
+  const cardDimensions = getCardDimension();
   return (
     <motion.div
-      className={`w-[${width}px] h-[${height}px] container m-auto ${
+      className={` container m-auto ${
         bgGradient
           ? `bg-gradient-to-bl from-[#1b5cf6] via-[#429eff] to-[#cb5baa]`
           : "bg-red-100"
       } rounded-xl relative text-white shadow-2xl`}
+      animate={cardDimensions}
     >
-      <div className="w-full">
+      <div className="w-full vstack justify-around">
         <div className="flex justify-between">
           <div className="hstack">
             <p className="text-3xl font-black leading-loose tracking-widest ">
