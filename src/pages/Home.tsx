@@ -63,12 +63,8 @@ export function Home() {
                       key={card.id}
                       layoutId={"card" + card.id}
                       initial={{
-                        rotate: -90,
-                        y: height / 3,
                         x: (height - width) / 2 + height * index + 20 * index,
-                        width: width,
                         opacity: 0,
-                        height: height,
                       }}
                       animate={{
                         rotate: -90,
